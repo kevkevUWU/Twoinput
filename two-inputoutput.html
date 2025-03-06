@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2 INPUT 1 OUTPUT TEMPLATE</title>
+    <style>
+        /* General Styles */
+        body {
+            background-image: url(https://static.vecteezy.com/system/resources/previews/003/127/709/non_2x/korean-traditional-background-frame-ornament-free-vector.jpg);
+            background-repeat: no-repeat;
+            background-size: 100vw 100vh;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 5rem;
+        }
+
+        @media only screen and (max-width: 1380px) {
+            body {
+                h1 {
+                    margin-top: 10%;
+            font-size: 3.5rem;
+        }
+        p{
+            left: 20vw;
+            font-size: 40px;
+        }
+                 }
+        }
+        @media only screen and (max-width: 900px) {
+            body {
+                h1 {
+                    margin-top: 20%;
+            font-size: 2rem;
+        }
+        p{
+            left: 10vw;
+        }
+                 }
+        }
+
+        @media only screen and (max-width: 600px) {
+            body{
+                h1 {
+            font-size: 1.5rem;
+            margin-top: 10%;
+        }
+            .container {
+                img{
+                    width: 200px;
+                }
+        }
+        .container{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        p{
+            text-align: center;
+            top: 50vh;
+            display: block;
+            margin: auto;
+        }
+    }
+        }
+        @media only screen and (max-height: 9in) {
+            body{
+                h1 {
+            font-size: 1.5rem;
+            margin-top: 10%;
+        }
+            .container {
+                img{
+                    width: 200px;
+                }
+            
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        p{
+            text-align: center;
+            top: 60vh;
+        }
+    }
+        }
+        h1{
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .container2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .container {
+            display: flex;
+            width: 120%;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .container img{
+            width: 300px;
+            height: auto;
+        }
+
+        #displayedImage {
+            display: none;
+        }
+
+        p{
+            position: absolute;
+            left: 30vw;
+            top: 250px;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test your Kpop knowledge!</h1>
+    
+    <div class="container2">
+        <input type="text" id="charInput1" maxlength="1">
+        <input type="text" id="charInput2" maxlength="1">
+        <button onclick="displayImage()" id="submitButton">Show Image</button>
+    </div>
+    
+    <div class="container">
+        <img id="displayedImage" src="" alt="Displayed Image">
+    </div>
+    
+    <div id="theDiv"></div>
+    <p id="Info"></p>
+    
+
+
+    <script>
+        
+        function displayImage() {
+            const imgElement = document.getElementById("displayedImage");
+            const input1_letter = document.getElementById("charInput1").value.toUpperCase();
+            const input2_letter = document.getElementById("charInput2").value.toUpperCase();
+
+            const images = {
+                "YJ": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/20250226_Aespa%27s_Karina_카리나_03.jpg/500px-20250226_Aespa%27s_Karina_카리나_03.jpg",
+                "AU": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Giselle_of_Aespa%2C_July_25%2C_2024_%282%29.png/500px-Giselle_of_Aespa%2C_July_25%2C_2024_%282%29.png",
+                "KM": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Winter_at_2024_Melon_Music_Awards.png/440px-Winter_at_2024_Melon_Music_Awards.png",
+                "NY": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Aespa_Ningning_2024_MMA.jpg/500px-Aespa_Ningning_2024_MMA.jpg",
+                "KJ": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Kim_Jisoo_2025_02.jpg/400px-Kim_Jisoo_2025_02.jpg",
+                "JK": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Kim_Jennie_%28김제니%29_07.png/440px-Kim_Jennie_%28김제니%29_07.png",
+                "RP": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Blackpink_Rosé_Rimowa_1.jpg/440px-Blackpink_Rosé_Rimowa_1.jpg",
+                "PM": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/20240911_Lisa_MTV_VMAs_06_%28cropped%29.png/440px-20240911_Lisa_MTV_VMAs_06_%28cropped%29.png",
+                "HY": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Hwang_Yeji_02.jpg/440px-Hwang_Yeji_02.jpg",
+                "CJ": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/ITZY%27s_Lia_for_DOLCE_%26_GABANA_2024_02.jpg/440px-ITZY%27s_Lia_for_DOLCE_%26_GABANA_2024_02.jpg",
+                "SR": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/241023_ITZY_Ryujin.jpg/440px-241023_ITZY_Ryujin.jpg",
+                "LC": "https://pbs.twimg.com/media/GY5PFhtboAASfvl?format=jpg&name=4096x4096",
+                "SY": "https://pbs.twimg.com/media/GY5PTWfakAANDMO?format=jpg&name=4096x4096",
+                "IN": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/220701_Nayeon%28나연%29_of_Twice_MusicBank_Fancam.jpg/440px-220701_Nayeon%28나연%29_of_Twice_MusicBank_Fancam.jpg",
+                "YK": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/TWICE_Jeongyeon_VETERAN_2_September_2024.jpg/440px-TWICE_Jeongyeon_VETERAN_2_September_2024.jpg",
+                "MH": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/TWICE_MOMO_April_2024.jpg/440px-TWICE_MOMO_April_2024.jpg",
+                "SM": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Sana_Minatozaki_湊﨑_紗夏_20250118_07.jpg/440px-Sana_Minatozaki_湊﨑_紗夏_20250118_07.jpg",
+                "PJ": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Jihyo_at_Gucci_Ancora_on_05032024_%28cropped%29.png",
+                "MS": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Mina_Sharon_Myoui_名井_南_2024_07.jpg/440px-Mina_Sharon_Myoui_名井_南_2024_07.jpg",
+                "KD": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Dahyun_at_press_conference_for_You_Are_the_Apple_of_My_Eye_02_%28cropped%29.png/440px-Dahyun_at_press_conference_for_You_Are_the_Apple_of_My_Eye_02_%28cropped%29.png",
+                "SC": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/241204_Chaeyoung_at_Rokh_H%26M_%282%29.png/440px-241204_Chaeyoung_at_Rokh_H%26M_%282%29.png",
+                "CT": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Tzuyu_at_Gucci_Ancora_on_05032024_%283%29.png/440px-Tzuyu_at_Gucci_Ancora_on_05032024_%283%29.png",
+                "AY": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/An_Yu-jin_at_the_2024_Melon_Music_Awards.png/500px-An_Yu-jin_at_the_2024_Melon_Music_Awards.png",
+                "JW": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Jang_Won-young_at_the_2024_Melon_Music_Awards.png/500px-Jang_Won-young_at_the_2024_Melon_Music_Awards.png",
+                "KG": "https://kprofiles.com/wp-content/uploads/2021/11/GAEUL-8-533x800.jpg",
+                "NR": "https://kprofiles.com/wp-content/uploads/2021/11/REI-7-533x800.jpg",
+                "LH": "https://kprofiles.com/wp-content/uploads/2021/11/LEESEO-8-533x800.jpg",
+                "SJ": "https://upload.wikimedia.org/wikipedia/commons/8/85/200108_Soojin_%28%EC%88%98%EC%A7%84%29_at_Gaon_Chart_Music_Awards.png",
+    "MN": "https://upload.wikimedia.org/wikipedia/commons/0/06/%28G%29I-dle_Minnie_for_Marie_Claire_Korea_2022.jpg",
+    "YS": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Shuhua_230630.png/500px-Shuhua_230630.png",
+    "CM": "https://upload.wikimedia.org/wikipedia/commons/4/4a/%28G%29-idle%27s_Miyeon_%EC%A1%B0%EB%AF%B8%EC%97%B0_at_the_The_3rd_Blue_Dragon_Series_Awards_07.jpg",
+    "JS": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Jeon_Soyeon_photo_call_2024_03.jpg/440px-Jeon_Soyeon_photo_call_2024_03.jpg",
+    "KT": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Taeyeon_at_Incheon_Airport_on_210723_%286%29.png/500px-Taeyeon_at_Incheon_Airport_on_210723_%286%29.png",
+    "IY": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Yoona_at_Incheon_Airport%2C_January_28%2C_2025.png/1024px-Yoona_at_Incheon_Airport%2C_January_28%2C_2025.png",
+    "LS": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/220728_%EC%86%8C%EB%85%80%EC%8B%9C%EB%8C%80_%EC%8D%A8%EB%8B%88_Sunny_%28cropped%29.jpg/440px-220728_%EC%86%8C%EB%85%80%EC%8B%9C%EB%8C%80_%EC%8D%A8%EB%8B%88_Sunny_%28cropped%29.jpg",
+    "HM": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Tiffany_Young_in_July_2024.png/440px-Tiffany_Young_in_July_2024.png",
+    "CS": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Choi_Sooyoung_LONGCHAMP_2024.jpg/500px-Choi_Sooyoung_LONGCHAMP_2024.jpg",
+    "KH": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Hyoyeon_in_October_2024.png/440px-Hyoyeon_in_October_2024.png",
+    "JJ": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Jessica_Jung_W_Korea_October_2024.jpg/500px-Jessica_Jung_W_Korea_October_2024.jpg",
+    "KY": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Mamamoo_%EC%86%94%EB%9D%BC%28Solar%29_in_May_2024.png/480px-Mamamoo_%EC%86%94%EB%9D%BC%28Solar%29_in_May_2024.png",
+    "AH": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/20240712_Hwasa_%28%ED%99%94%EC%82%AC%29.jpg_%282%29.jpg/480px-20240712_Hwasa_%28%ED%99%94%EC%82%AC%29.jpg_%282%29.jpg",
+    "MB": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Mamamoo_Moonbyul_in_2024_%281%29_03.jpg/500px-Mamamoo_Moonbyul_in_2024_%281%29_03.jpg",
+    "KS": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Kim_So-jeong_from_acrofan.jpg/440px-Kim_So-jeong_from_acrofan.jpg",
+    "JY": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Yerin_September_2024_%283x4_cropped%29.jpg/440px-Yerin_September_2024_%283x4_cropped%29.jpg",
+    "JE": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Eunha_August_2024_%283x4_cropped%29.jpg/440px-Eunha_August_2024_%283x4_cropped%29.jpg",
+    "CY": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Yuju_September_2024_%283x4_cropped%29.jpg/440px-Yuju_September_2024_%283x4_cropped%29.jpg",
+    "KY": "https://upload.wikimedia.org/wikipedia/commons/c/c2/21022023_Kim_Ye-won_%28actress%2C_born_1987%29_%EA%B9%80%EC%98%88%EC%9B%90.jpg",
+    "BJ": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/240511_Red_Velvet_Irene.jpg/500px-240511_Red_Velvet_Irene.jpg",
+    "SS": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/20210310%E2%80%94Wendy_%EC%9B%AC%EB%94%94_interview%2C_Marie_Claire_Korea_screenshot.jpg/500px-20210310%E2%80%94Wendy_%EC%9B%AC%EB%94%94_interview%2C_Marie_Claire_Korea_screenshot.jpg",
+    "PS": "https://static.tvtropes.org/pmwiki/pub/images/parksooyoung_2.png",
+    "KY": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/240511_Red_Velvet_Yeri.jpg/440px-240511_Red_Velvet_Yeri.jpg",
+    "KC": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/240329_Kim_Chae-won_%281%29.jpg/500px-240329_Kim_Chae-won_%281%29.jpg",
+    "SM": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/%EB%AF%B8%EC%95%BC%EC%99%80%ED%82%A4%EC%82%AC%EC%BF%A0%EB%9D%BC.jpg/440px-%EB%AF%B8%EC%95%BC%EC%99%80%ED%82%A4%EC%82%AC%EC%BF%A0%EB%9D%BC.jpg",
+    "HY": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Huh_Yunjin_of_Le_Sserafim%2C_January_10%2C_2025.png/440px-Huh_Yunjin_of_Le_Sserafim%2C_January_10%2C_2025.png",
+    "NK": "https://i.mydramalist.com/vmXzq_5f.jpg",
+            };
+            const facts = {
+        "YJ": "Yu Ji-min<br>Karina",
+         "AU": "Aeri Uchinaga<br>Giselle",
+         "KM": "Kim Min-jeong<br>(Winter)",
+        "NY": "Ning Yizhuo<br>(NingNing)",
+        "KJ": "Kim Ji-soo",
+        "JK": "Jennie Kim",
+        "RP": "Roseanne Park<br>(Rosé)",
+        "PM": "Pranpriya Manobal<br>(Lisa)",
+        "HY": "Hwang Ye-ji",
+        "CJ": "Choi Ji-su<br>(Lia)",
+        "SR": "Shin Ryu-jin",
+        "LC": "Lee Chae-ryeong",
+        "SY": "Shin Yu-na",
+        "IN": "Im Na-yeon",
+        "YK": "Yoo Kyung-wan<br>(Jeongyeon)",
+        "MH": "Momo Hirai",
+        "SM": "Sana Minatozaki",
+        "PJ": "Park Ji-soo",
+        "MS": "Mina Sharon Myoi",
+        "KD": "Kim Da-hyun",
+        "SC": "Son Chae-young",
+        "CT": "Chou Tzu-yu",
+        "AY": "An Yu-jin",
+        "JW": "Jang Won-young",
+        "KG": "Kim Ga-eul",
+        "NR": "Naoi Rei",
+        "LH": "Lee Hyun-seo<br>(Leeseo)",
+        "SJ": "Seo Soo-jin<br>(Soojin)",
+    "MN": "Minnie Nicha Yontararak",
+    "YS": "Ye Shuhua",
+    "CM": "Cho Mi-yeon",
+    "JS": "Jeon Soyeon",
+    "KT": "Kim Tae-yeon<br>(Taeyeon)",
+    "IY": "Im Yoon-ah<br>(Yoona)",
+    "LS": "Lee Soon-kyu<br>(Sunny)",
+    "HM": "Hwang Mi-young<br>(Tiffany)",
+    "CS": "Choi Soo-young",
+    "KH": "Kim Hyo-yeon",
+    "JJ": "Jessica Jung",
+    "KY": "Kim Yong-sun<br>(Solar)",
+    "AH": "Ahn Hye-jin<br>(Hwasa)",
+    "MB": "Moon Byul-yi",
+    "KS": "Kim So-jung<br>(Sowon)",
+    "JY": "Jung Ye-rin",
+    "JE": "Jung Eun-bi<br>(Eunha)",
+    "CY": "Choi Yu-na<br>(Yuju)",
+    "KY": "Kim Ye-won<br>(Umji)",
+    "BJ": "Bae Joo-hyun<br>(Irene)",
+    "SS": "Son Seung-wan<br>(Wendy)",
+    "PS": "Park Soo-young<br>(Joy)",
+    "KY": "Kim Ye-rim<br>(Yeri)",
+    "KC": "Kim Chae-won",
+    "SM": "Sakura Miyawaki",
+    "HY": "Huh Yun-jin",
+    "NK": "Nakamura Kazuha",
+
+
+ 
+
+
+             };
+            
+            const key = input1_letter + input2_letter;
+            if (images[key]) {
+                imgElement.src = images[key];
+
+                imgElement.style.display = "block";
+                document.getElementById("Info").innerHTML = facts[key];
+
+            } else {
+                imgElement.style.display = "none";
+            }
+            
+        }
+
+    </script>
+</body>
+</html>
